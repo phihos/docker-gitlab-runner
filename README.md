@@ -18,7 +18,7 @@ For a shell runner run
         -e RUNNER_EXECUTOR=shell \
         -e RUNNER_SHELL=bash \
         --volume /etc/gitlab-runner:/etc/gitlab-runner \
-	phihos/gitlab-runner
+        phihos/gitlab-runner
         
 For a Docker runner run
 
@@ -31,7 +31,7 @@ For a Docker runner run
           -e DOCKER_IMAGE="ubuntu:latest" \
           --volume /etc/gitlab-runner:/etc/gitlab-runner \
           --volume /var/run/docker.sock:/var/run/docker.sock \
-	  phihos/gitlab-runner
+          phihos/gitlab-runner
 	
 For a list of possible environment variables run
 
