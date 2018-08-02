@@ -1,5 +1,8 @@
 # Docker GitLab Runner
 
+![Automated Build](https://img.shields.io/docker/automated/phihos/gitlab-runner.svg)
+![Build Status](https://img.shields.io/docker/build/phihos/gitlab-runner.svg)
+
 A dockerized GitLab runner that automatically registers before running.
 The first time the container runs it is registered with GitLab. If the configuration file already exists this step is skipped.
 
