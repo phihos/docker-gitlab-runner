@@ -13,10 +13,10 @@ For a shell runner run
     docker run --detached \
         --name=gitlab-runner
         --restart=always \
-        --environment REGISTRATION_TOKEN=XXXXXXXXXX \
-        --environment CI_SERVER_URL=http://gitlab.mydomain.com \
-        --environment RUNNER_EXECUTOR=shell \
-        --environment RUNNER_SHELL=bash \
+        -e REGISTRATION_TOKEN=XXXXXXXXXX \
+        -e CI_SERVER_URL=http://gitlab.mydomain.com \
+        -e RUNNER_EXECUTOR=shell \
+        -e RUNNER_SHELL=bash \
         --volume=/etc/gitlab-runner:/etc/gitlab-runner
         
 For a Docker runner run
@@ -24,12 +24,12 @@ For a Docker runner run
     docker run --detached \
           --name=gitlab-runner
           --restart=always \
-          --environment REGISTRATION_TOKEN=XXXXXXXXXX \
-          --environment CI_SERVER_URL=http://gitlab.mydomain.com \
-          --environment RUNNER_EXECUTOR=docker \
-          --environment DOCKER_IMAGE = "ubuntu:latest"
-          --volume=/etc/gitlab-runner:/etc/gitlab-runner
-          --volume=/var/run/docker.sock:/var/run/docker.sock
+          -e REGISTRATION_TOKEN=XXXXXXXXXX \
+          -e CI_SERVER_URL=http://gitlab.mydomain.com \
+          -e RUNNER_EXECUTOR=docker \
+          -e DOCKER_IMAGE = "ubuntu:latest" \
+          --volume=/etc/gitlab-runner:/etc/gitlab-runner \
+          --volume=/var/run/docker.sock:/var/run/docker.sock \
 	
 For a list of possible environment variables run
 
