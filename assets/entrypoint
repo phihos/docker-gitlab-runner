@@ -27,7 +27,7 @@ runner_env() {
        for i in $(seq 1 256); do
                env=$(eval echo \${RUNNER_ENV_${i}})
                test -n "$env" || break
-               printf "--env %s\n" "$env"
+               printf -- "--env %s\n" "$env"
        done
 }
 
