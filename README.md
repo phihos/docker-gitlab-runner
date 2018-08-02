@@ -11,7 +11,7 @@ The first time the container runs it is registered with GitLab. If the configura
 For a shell runner run
 
     docker run --detached \
-        --name=gitlab-runner
+        --name=gitlab-runner \
         --restart=always \
         -e REGISTRATION_TOKEN=XXXXXXXXXX \
         -e CI_SERVER_URL=http://gitlab.mydomain.com \
@@ -22,7 +22,7 @@ For a shell runner run
 For a Docker runner run
 
     docker run --detached \
-          --name=gitlab-runner
+          --name=gitlab-runner \
           --restart=always \
           -e REGISTRATION_TOKEN=XXXXXXXXXX \
           -e CI_SERVER_URL=http://gitlab.mydomain.com \
