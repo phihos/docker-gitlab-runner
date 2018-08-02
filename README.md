@@ -27,6 +27,11 @@ For a Docker runner run
           --environment DOCKER_IMAGE = "ubuntu:latest"
           --volume=/etc/gitlab-runner:/etc/gitlab-runner
           --volume=/var/run/docker.sock:/var/run/docker.sock
+		  
+## RUNNER_ENV workaround
+
+Currently it is [not possible](https://gitlab.com/gitlab-org/gitlab-runner/issues/259) to specify multiple environment variables via *RUNNER_ENV*.
+As a workaround you can specify *RUNNER_ENV_1, RUNNER_ENV_2, ..., RUNNER_ENV_256*. This fix was taken from [here](https://gitlab.com/gitlab-org/gitlab-runner/issues/259#note_41453202).
         
 ## License
 

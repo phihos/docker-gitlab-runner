@@ -18,12 +18,25 @@ if [ -f "${CA_CERTIFICATES_PATH}" ]; then
   cmp --silent "${CA_CERTIFICATES_PATH}" "${LOCAL_CA_PATH}" || update_ca
 fi
 
-if [ ! -f $CONFIG_FILE ]; then
-	echo "Runner config does not exist. Registering..."
-    gitlab-ci-multi-runner register --non-interactive
+# RUNNER_ENV doesn't do multi values
+# https://gitlab.com/gitlab-org/gitlab-ci-multi-runner/issues/259
+# build --env XXX parameters from RUNNER_ENV_X variables
+# support up to 256 variables
+runner_env() {
+       local i env
+       for i in $(seq 1 256); do
+               env=$(eval echo \${RUNNER_ENV_${i}})
+               test -n "$env" || break
+               printf "--env %s\n" "$env"
+       done
+}
+
+if [ ! -f $CONFIG_FILE ] || [ -z $(grep "[[runners]]" "$CONFIG_FILE") ]; then
+	echo "Runners not registered. Registering..."
+    gitlab-ci-multi-runner register --non-interactive $(runner_env)
 	echo "Registration done."
 else
-	echo "Runner config already there. Skipping registration."
+	echo "Runner already registered. Skipping registration."
 fi
 
 # launch gitlab-ci-multi-runner passing all arguments
