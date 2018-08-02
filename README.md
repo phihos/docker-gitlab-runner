@@ -29,7 +29,7 @@ For a Docker runner run
           -e RUNNER_EXECUTOR=docker \
           -e DOCKER_IMAGE = "ubuntu:latest" \
           --volume=/etc/gitlab-runner:/etc/gitlab-runner \
-          --volume=/var/run/docker.sock:/var/run/docker.sock \
+          --volume=/var/run/docker.sock:/var/run/docker.sock
 	
 For a list of possible environment variables run
 
