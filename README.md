@@ -10,26 +10,28 @@ The first time the container runs it is registered with GitLab. If the configura
 
 For a shell runner run
 
-    docker run --detached \
-        --name=gitlab-runner \
+    docker run --detach \
+        --name gitlab-runner \
         --restart=always \
         -e REGISTRATION_TOKEN=XXXXXXXXXX \
         -e CI_SERVER_URL=http://gitlab.mydomain.com \
         -e RUNNER_EXECUTOR=shell \
         -e RUNNER_SHELL=bash \
-        --volume=/etc/gitlab-runner:/etc/gitlab-runner
+        --volume /etc/gitlab-runner:/etc/gitlab-runner \
+	phihos/gitlab-runner
         
 For a Docker runner run
 
-    docker run --detached \
-          --name=gitlab-runner \
-          --restart=always \
+    docker run --detach \
+          --name gitlab-runner \
+          --restart always \
           -e REGISTRATION_TOKEN=XXXXXXXXXX \
           -e CI_SERVER_URL=http://gitlab.mydomain.com \
           -e RUNNER_EXECUTOR=docker \
-          -e DOCKER_IMAGE = "ubuntu:latest" \
-          --volume=/etc/gitlab-runner:/etc/gitlab-runner \
-          --volume=/var/run/docker.sock:/var/run/docker.sock
+          -e DOCKER_IMAGE="ubuntu:latest" \
+          --volume /etc/gitlab-runner:/etc/gitlab-runner \
+          --volume /var/run/docker.sock:/var/run/docker.sock \
+	  phihos/gitlab-runner
 	
 For a list of possible environment variables run
 
