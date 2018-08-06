@@ -33,11 +33,14 @@ runner_env() {
 
 if [ ! -f $CONFIG_FILE ] || [ -z $(grep "[[runners]]" "$CONFIG_FILE") ]; then
 	echo "Runners not registered. Registering..."
-    gitlab-ci-multi-runner register --non-interactive $(runner_env)
+	gitlab-runner register --non-interactive $(runner_env)
 	echo "Registration done."
 else
 	echo "Runner already registered. Skipping registration."
 fi
 
+# hide it after use
+unset REGISTRATION_TOKEN
+
 # launch gitlab-ci-multi-runner passing all arguments
-exec gitlab-ci-multi-runner "$@"
+exec gitlab-runner "$@"
