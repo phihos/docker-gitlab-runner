@@ -31,7 +31,7 @@ runner_env() {
        done
 }
 
-if [ ! -f $CONFIG_FILE ] || [ -z $(grep "[[runners]]" "$CONFIG_FILE") ]; then
+if [ ! -f $CONFIG_FILE ] || ! grep -q "runners" "$CONFIG_FILE" ]; then
 	echo "Runners not registered. Registering..."
 	gitlab-runner register --non-interactive $(runner_env)
 	echo "Registration done."
